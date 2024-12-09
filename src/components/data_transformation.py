@@ -1,15 +1,13 @@
-import sys
-from dataclasses import dataclass
+from src.exception import CustomException
+from src.logger import logging
+import os
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
-from src.exception import CustomException
-from src.logger import logging
-import os # To save preprocessor object
+from sklearn.externals import joblib
 
 class DataTransformation:
     def __init__(self):
@@ -17,13 +15,13 @@ class DataTransformation:
 
     def get_data_transformer_object(self):
         try:
-            numerical_columns = ["writing_score", "reading_score"]
+            numerical_columns = ["writing_score", "reading_score"]  # Update according to your dataset
             categorical_columns = [
-                "gender",
-                "race_ethnicity",
-                "parental_level_of_education",
-                "lunch",
-                "test_preparation_course",
+                "gender", 
+                "race_ethnicity", 
+                "parental_level_of_education", 
+                "lunch", 
+                "test_preparation_course"
             ]
 
             logging.info("Defining numerical and categorical pipelines")
@@ -70,7 +68,7 @@ class DataTransformation:
             logging.info("Obtaining preprocessing object")
             preprocessing_obj = self.get_data_transformer_object()
 
-            target_columns_name = "math_score"
+            target_columns_name = "math_score"  # Update with your target variable
             numerical_columns = ["writing_score", "reading_score"]
 
             # Split input and target features for train and test datasets

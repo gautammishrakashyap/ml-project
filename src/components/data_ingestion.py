@@ -4,8 +4,6 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.exception import CustomException
 from src.logger import logging
-from src.components.data_transformation import DataTransformation
-from src.components.data_transformation import DataTransformationConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -22,7 +20,7 @@ class DataIngestion:
 
         try:
             # Load dataset
-            file_path = 'notebook/download.csv'  # Replace with a configurable path if needed
+            file_path = 'StudentsPerformance.csv'  # Update with your actual file name
             df = pd.read_csv(file_path)
             logging.info('Dataset loaded into a DataFrame')
 
